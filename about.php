@@ -7,7 +7,7 @@
    <!--- basic page needs
    ================================================== -->
    <meta charset="utf-8">
-	<title>Abstract</title>
+	<title>SJEC-BLOG</title>
 	<meta name="description" content="">  
 	<meta name="author" content="">
 

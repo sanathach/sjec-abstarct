@@ -5,25 +5,25 @@
    	<div class="row header-content">
 
    		<div class="logo">
-	         <a href="index.html">Author</a>
+	         <a href="https://www.sjec.ac.in/">Author</a>
 	      </div>
 
 	   	<nav id="main-nav-wrap">
 				<ul class="main-navigation sf-menu">
 					<li class="current"><a href="index.php" title="">Home</a></li>									
 					<li class="has-children">
-						<a href="category.php" title="">Departments</a>
+						<a href="#" title="">Departments</a>
 						<ul class="sub-menu">
-			            <li><a href="category.php">MCA</a></li>
-			            <li><a href="category.php">MBA</a></li>
-			            <li><a href="category.php">CSE</a></li>
-			            <li><a href="category.php">ME</a></li>
-			            <li><a href="category.php">CIVIL</a></li>
-			            <li><a href="category.php">ECE</a></li>
+			            <li><a href="mca.php">MCA</a></li>
+			            <li><a href="mba.php">MBA</a></li>
+			            <li><a href="cse.php">CSE</a></li>
+			            <li><a href="me.php">ME</a></li>
+			            <li><a href="civil.php">CIVIL</a></li>
+			            <li><a href="ece.php">ECE</a></li>
 			         </ul>
 					</li>
 					<li class="has-children">
-						<a href="single-standard.html" title="">Blog</a>
+						<a href="single-standard.php" title="">Blog</a>
 						<ul class="sub-menu">
 			            <li><a href="single-video.php">Video Post</a></li>
 			            <li><a href="single-audio.php">Audio Post</a></li>
@@ -33,7 +33,9 @@
 					</li>
 					<li><a href="style-guide.php" title="">Styles</a></li>
 					<li><a href="about.php" title="">About</a></li>	
-					<li><a href="contact.php" title="">Contact</a></li>										
+					<li><a href="contact.php" title="">Contact</a></li>	
+					<li><a href="index.html" title="">Login/Sign up</a></li>	
+														
 				</ul>
 			</nav> <!-- end main-nav-wrap -->
 
