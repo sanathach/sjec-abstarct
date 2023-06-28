@@ -1,3 +1,10 @@
+<?php
+ 
+	 $con = mysqli_connect('localhost','root','');
+	 mysqli_select_db($con,'test_db');
+	 $sql = mysqli_query($con,"SELECT * FROM images");
+	 $row = mysqli_fetch_array($sql);
+?>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
@@ -126,7 +133,7 @@
 
 					<div class="entry-thumb">
 						<a href="single-standard.html" class="thumb-link">
-							<img src="images/thumbs/qodl.jpg" alt="building">
+							<img src="images/thumbs/<?php echo $row['image_url']; ?>" alt="building">
 						</a>
 					</div>
 
@@ -188,10 +195,7 @@
 
 					<div class="entry-thumb">
 						<!-- <a href="single-audio.html" class="thumb-link"> -->
-						<video autoplay muted>
-							<source src="#" type="video/mp4">
-						</video>
-						-->
+							
 						<!-- </a> -->
 
 						<div class="audio-wrap">

@@ -1,3 +1,10 @@
+<?php
+ 
+	 $con = mysqli_connect('localhost','root','');
+	 mysqli_select_db($con,'sjecblog');
+	 $sql = mysqli_query($con,"SELECT * FROM images");
+	 $row = mysqli_fetch_array($sql);
+?>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
@@ -123,7 +130,7 @@
 
 					<div class="entry-thumb">
 						<a href="single-standard.html" class="thumb-link">
-							<img src="images/thumbs/diagonal-building.jpg" alt="building">
+							<!-- <img src="images/thumbs/diagonal-building.jpg" alt="building"> -->
 						</a>
 					</div>
 
@@ -140,11 +147,11 @@
 							<h1 class="entry-title"><a href="single-standard.html">Just a Standard Format Post.</a></h1>
 
 						</div>
-						<div class="entry-excerpt">
+						<!-- <div class="entry-excerpt">
 							Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit
 							proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute
 							incididunt velit sint in aliqua cillum in consequat consequat in culpa in anim.
-						</div>
+						</div> -->
 					</div>
 
 				</article> <!-- end article -->
