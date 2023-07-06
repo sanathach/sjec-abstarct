@@ -1,8 +1,7 @@
 <?php
- 
 	 $con = mysqli_connect('localhost','root','');
-	 mysqli_select_db($con,'test_db');
-	 $sql = mysqli_query($con,"SELECT * FROM images");
+	 mysqli_select_db($con,'sjecblog');
+	 $sql = mysqli_query($con,"SELECT * FROM upload");
 	 $row = mysqli_fetch_array($sql);
 ?>
 <!DOCTYPE html>
