@@ -34,7 +34,7 @@
 					<li><a href="style-guide.php" title="">Styles</a></li>
 					<li><a href="about.php" title="">About</a></li>	
 					<li><a href="contact.php" title="">Contact</a></li>	
-					<li><a href="index.html" title="">Login/Sign up</a></li>	
+					<li><a href="register.php" title="">Login/Sign up</a></li>	
 														
 				</ul>
 			</nav> <!-- end main-nav-wrap -->
