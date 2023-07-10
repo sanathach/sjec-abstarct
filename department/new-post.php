@@ -1,4 +1,17 @@
 <?php include('inc/session.php'); ?>
+<?php include('inc/session.php');
+if(isset($_GET['edit']))
+{
+  $upload_id = $_GET['upload_id'];
+  $query = mysqli_query($conn,"SELECT * FRoM upload WHERE upload_id='$upload_id'");
+  $rr = mysqli_fetch_array($query);
+  $title = $rr['title'];
+  $desc = $rr['description'];
+}
+else{
+  $title = $desc = "";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,12 +47,24 @@
                     <div class="form-group">
                       <label for="">Description</label>
                       <input type="text" name="desc" class="form-control"placeholder="Description" Required>
+                      <input type="text" class="form-control" name="title" placeholder="Title" value="<?php echo $title; ?>"Required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Description</label>
+                      <input type="text" name="desc" class="form-control"placeholder="Description" value="<?php echo $desc; ?>"Required>
                     </div>
                     <div class="form-group">
                       <label for="">Choose Image</label>
                       <input type="file" name="image" class="form-control">
                     </div>
                     <button type="submit" name="btn_submit" class="btn btn-primary mr-2">Submit</button>
+                    <?php 
+                    if(isset($_GET['edit'])){
+                      echo '<button type="submit" name="btn_edit" class="btn btn-success mr-2">Edit</button>';
+                    }else{
+                    echo '<button type="submit" name="btn_submit" class="btn btn-success mr-2">Submit</button>';
+                    }
+                    ?>
                   </form>
                 </div>
               </div>
@@ -89,7 +114,11 @@ if(isset($_POST['btn_submit'])){
 $curdate = date("Y-m-d H:i:s");
   $filename = $_FILES['image']['name'];
   $filetmpname = $_FILES['image']['tmp_name'];
+<<<<<<< HEAD
   $folder = '../images/uploads/'.$dept_name.'/';
+=======
+  $folder = '../images/uploads/'.$dept_acronym.'/';
+>>>>>>> c8f64f6adb859ecb1f2b7ea72e8ab364df6f33f3
   $newfilename = $title.'.jpg';
   move_uploaded_file($filetmpname,$folder.$newfilename);
   $sql = mysqli_query($conn,"INSERT into upload(dept_id,`title`,`description`,`image`,upload_date)VALUES('$dept_id','$title','$desc','$newfilename','$curdate')");
@@ -103,6 +132,26 @@ $curdate = date("Y-m-d H:i:s");
     ';
   }
 }
+<<<<<<< HEAD
+=======
+if(isset($_POST['btn_edit']))
+{
+  $title = mysqli_real_escape_string($conn,$_POST['title']);
+  $desc = mysqli_real_escape_string($conn,$_POST['desc']);
+  date_default_timezone_set("Asia/Kolkata");
+$curdate = date("Y-m-d H:i:s");
+$sql = mysqli_query($conn,"UPDATE upload set title='$title',`description`='$desc',upload_date='$curdate' WHERE upload_id='$upload_id'");
+if($sql)
+{
+  echo '
+  <script>
+  alert("Post Updated Successfully");
+  window.location.href = "all-posts.php";
+  </script>
+  ';
+}
+}
+>>>>>>> c8f64f6adb859ecb1f2b7ea72e8ab364df6f33f3
 ?>
 </html>
 

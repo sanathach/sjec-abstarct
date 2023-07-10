@@ -11,6 +11,7 @@
     $r = mysqli_fetch_array($sql);
     $dept_name = $r['dept_name'];
     $email = $r['email'];
+    $dept_acronym = $r['dept_acronym'];
   }
   else
   {
