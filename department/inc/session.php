@@ -11,6 +11,10 @@
     $r = mysqli_fetch_array($sql);
     $dept_name = $r['dept_name'];
     $email = $r['email'];
+<<<<<<< HEAD
+=======
+    $dept_acronym = $r['dept_acronym'];
+>>>>>>> c8f64f6 (chamges)
   }
   else
   {
