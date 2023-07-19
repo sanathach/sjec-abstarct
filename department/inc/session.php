@@ -2,7 +2,6 @@
   ob_start();
   ob_clean();
   session_start();
-
   if(isset($_SESSION['logged_user']))
   {
     include("inc/config.php");

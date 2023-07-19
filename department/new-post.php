@@ -1,4 +1,3 @@
-<?php include('inc/session.php'); ?>
 <?php include('inc/session.php');
 if(isset($_GET['edit']))
 {
@@ -43,11 +42,6 @@ else{
                     <div class="form-group">
                       <label for="">Title</label>
                       <input type="text" class="form-control" name="title" placeholder="Title" Required>
-                    </div>
-                    <div class="form-group">
-                      <label for="">Description</label>
-                      <input type="text" name="desc" class="form-control"placeholder="Description" Required>
-                      <input type="text" class="form-control" name="title" placeholder="Title" value="<?php echo $title; ?>"Required>
                     </div>
                     <div class="form-group">
                       <label for="">Description</label>
@@ -114,11 +108,7 @@ if(isset($_POST['btn_submit'])){
 $curdate = date("Y-m-d H:i:s");
   $filename = $_FILES['image']['name'];
   $filetmpname = $_FILES['image']['tmp_name'];
-<<<<<<< HEAD
-  $folder = '../images/uploads/'.$dept_name.'/';
-=======
   $folder = '../images/uploads/'.$dept_acronym.'/';
->>>>>>> c8f64f6adb859ecb1f2b7ea72e8ab364df6f33f3
   $newfilename = $title.'.jpg';
   move_uploaded_file($filetmpname,$folder.$newfilename);
   $sql = mysqli_query($conn,"INSERT into upload(dept_id,`title`,`description`,`image`,upload_date)VALUES('$dept_id','$title','$desc','$newfilename','$curdate')");
@@ -132,8 +122,6 @@ $curdate = date("Y-m-d H:i:s");
     ';
   }
 }
-<<<<<<< HEAD
-=======
 if(isset($_POST['btn_edit']))
 {
   $title = mysqli_real_escape_string($conn,$_POST['title']);
@@ -151,7 +139,6 @@ if($sql)
   ';
 }
 }
->>>>>>> c8f64f6adb859ecb1f2b7ea72e8ab364df6f33f3
 ?>
 </html>
 

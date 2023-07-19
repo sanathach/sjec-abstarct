@@ -96,6 +96,12 @@ else{
 </body>
 <?php 
 include('inc/config.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
 if(isset($_POST['btn_submit'])){
     $name = mysqli_real_escape_string($conn,$_POST['name']);
     $email = mysqli_real_escape_string($conn,$_POST['email']);
@@ -111,10 +117,40 @@ if(isset($_POST['btn_submit'])){
         exit();
       }
     }
-    $password = password_hash('sanath',PASSWORD_DEFAULT);
+    function getName($n) {
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $randomString = '';
+    
+      for ($i = 0; $i < $n; $i++) {
+          $index = rand(0, strlen($characters) - 1);
+          $randomString .= $characters[$index];
+      }
+    
+      return $randomString;
+    }
+    $pass = getName(8);
+    $password = password_hash($pass,PASSWORD_DEFAULT);
+    $message = 'Hello, Your login credentials are 
+Email : '.$email.' 
+Password : '.$pass.'';
   $sql = mysqli_query($conn,"INSERT into department(`dept_name`,`email`,`password`)VALUES('$name','$email','$password')");
   if($sql)
   {
+    $mail = new PHPMailer(true);
+  $mail->isSMTP();
+  $mail->Host = 'smtp.gmail.com';
+  $mail->SMTPAuth = 'true';
+  $mail->Username = 'nikhilb16899@gmail.com';
+  $mail->Password = 'vdphskzvgcuwtnga';
+  $mail->SMTPSecure = 'ssl';
+  $mail->Port =465;
+  
+  $mail->setFrom('nikhilb16899@gmail.com');
+  $mail->addAddress('21ca40.sanath@sjec.ac.in');
+  $mail->isHTML(true);
+  $mail->Subject = 'Login Credentials';
+  $mail->Body = $message;
+  $mail->send();
     echo '
     <script>
     alert("Department inserted successfully");

@@ -15,7 +15,7 @@
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       <!-- partial -->
-      <!-- partial:partials/_sidebar.html -->
+      <!-- partial:partials/_sidebar.html --> 
      <?php include('inc/sidebar.php'); ?>
       <!-- partial -->
       <div class="main-panel">
