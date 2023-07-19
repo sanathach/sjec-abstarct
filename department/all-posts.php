@@ -20,6 +20,9 @@
       <div class="main-panel">
         <div class="content-wrapper">
         <div class="col-lg-12 grid-margin stretch-card">
+        <?php   
+            $sql = mysqli_query($conn,"SELECT * FROM upload WHERE dept_id='$dept_id'");
+            if(mysqli_num_rows($sql)>0){ ?>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">All Posts</h4>
@@ -39,7 +42,6 @@
                        <?php
                        $i=1;
                        include('inc/config.php');
-                        $sql = mysqli_query($conn,"SELECT * FROM upload WHERE dept_id='$dept_id'");
                         while($row = mysqli_fetch_array($sql)){
                             echo '
                             <tr>
@@ -59,6 +61,9 @@
                   </div>
                 </div>
               </div>
+              <?php } else {
+                echo '<h4 class="card-title">No Posts Uploaded</h4>';
+              } ?>
             </div>
                   <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
