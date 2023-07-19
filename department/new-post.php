@@ -123,11 +123,7 @@ if(isset($_POST['btn_submit'])){
 $curdate = date("Y-m-d H:i:s");
   $filename = $_FILES['image']['name'];
   $filetmpname = $_FILES['image']['tmp_name'];
-<<<<<<< HEAD
-  $folder = '../images/uploads/'.$dept_name.'/';
-=======
   $folder = '../images/uploads/'.$dept_acronym.'/';
->>>>>>> c8f64f6 (chamges)
   $newfilename = $title.'.jpg';
   move_uploaded_file($filetmpname,$folder.$newfilename);
   $sql = mysqli_query($conn,"INSERT into upload(dept_id,`title`,`description`,`image`,upload_date)VALUES('$dept_id','$title','$desc','$newfilename','$curdate')");
@@ -141,8 +137,6 @@ $curdate = date("Y-m-d H:i:s");
     ';
   }
 }
-<<<<<<< HEAD
-=======
 if(isset($_POST['btn_edit']))
 {
   $title = mysqli_real_escape_string($conn,$_POST['title']);
@@ -160,7 +154,6 @@ if($sql)
   ';
 }
 }
->>>>>>> c8f64f6 (chamges)
 ?>
 </html>
 
