@@ -6,9 +6,10 @@ if(isset($_GET['edit'])){
   $row = mysqli_fetch_array($query);
   $name = $row['dept_name'];
   $email = $row['email'];
+  $acronym = $row['dept_acronym'];
 }
 else{
-  $name = $email ="";
+  $name = $email =$acronym ="";
 }
 ?>
 <!DOCTYPE html>
@@ -42,6 +43,10 @@ else{
                     <div class="form-group">
                       <label for="">Name</label>
                       <input type="text" class="form-control" name="name" placeholder="Name" value="<?php echo $name; ?>" Required>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Acronym</label>
+                      <input type="text" class="form-control" name="acronym" placeholder="Acronym in less than 5 characters" value="<?php echo $acronym; ?>" Required>
                     </div>
                     <div class="form-group">
                       <label for="">Email</label>
@@ -96,9 +101,16 @@ else{
 </body>
 <?php 
 include('inc/config.php');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
 if(isset($_POST['btn_submit'])){
     $name = mysqli_real_escape_string($conn,$_POST['name']);
     $email = mysqli_real_escape_string($conn,$_POST['email']);
+    $acronym = mysqli_real_escape_string($conn,$_POST['acronym']);
     $sql1 = mysqli_query($conn,"SELECT * FROM department");
     while($rr = mysqli_fetch_array($sql1)){
       if($rr['email']==$email){
@@ -111,10 +123,40 @@ if(isset($_POST['btn_submit'])){
         exit();
       }
     }
-    $password = password_hash('sanath',PASSWORD_DEFAULT);
-  $sql = mysqli_query($conn,"INSERT into department(`dept_name`,`email`,`password`)VALUES('$name','$email','$password')");
+    function getName($n) {
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $randomString = '';
+    
+      for ($i = 0; $i < $n; $i++) {
+          $index = rand(0, strlen($characters) - 1);
+          $randomString .= $characters[$index];
+      }
+    
+      return $randomString;
+    }
+    $pass = getName(8);
+    $password = password_hash($pass,PASSWORD_DEFAULT);
+    $message = 'Hello, Your login credentials are 
+Email : '.$email.' 
+Password : '.$pass.'';
+  $sql = mysqli_query($conn,"INSERT into department(`dept_name`,`email`,`dept_acronym`,`password`)VALUES('$name','$email','$acronym','$password')");
   if($sql)
   {
+    $mail = new PHPMailer(true);
+  $mail->isSMTP();
+  $mail->Host = 'smtp.gmail.com';
+  $mail->SMTPAuth = 'true';
+  $mail->Username = 'acharyasanath29@gmail.com';
+  $mail->Password = 'erifwovqhrtnuami';
+  $mail->SMTPSecure = 'ssl';
+  $mail->Port =465;
+  
+  $mail->setFrom('acharyasanath29@gmail.com');
+  $mail->addAddress('21ca40.sanath@sjec.ac.in');
+  $mail->isHTML(true);
+  $mail->Subject = 'Login Credentials';
+  $mail->Body = $message;
+  $mail->send();
     echo '
     <script>
     alert("Department inserted successfully");

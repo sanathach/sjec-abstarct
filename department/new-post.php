@@ -1,4 +1,3 @@
-<?php include('inc/session.php'); ?>
 <?php include('inc/session.php');
 if(isset($_GET['edit']))
 {
@@ -52,6 +51,7 @@ else{
                       <label for="">Choose Image</label>
                       <input type="file" name="image" class="form-control">
                     </div>
+                    <button type="submit" name="btn_submit" class="btn btn-primary mr-2">Submit</button>
                     <?php 
                     if(isset($_GET['edit'])){
                       echo '<button type="submit" name="btn_edit" class="btn btn-success mr-2">Edit</button>';
@@ -108,7 +108,6 @@ if(isset($_POST['btn_submit'])){
 $curdate = date("Y-m-d H:i:s");
   $filename = $_FILES['image']['name'];
   $filetmpname = $_FILES['image']['tmp_name'];
-  $folder = '../images/uploads/'.$dept_name.'/';
   $folder = '../images/uploads/'.$dept_acronym.'/';
   $newfilename = $title.'.jpg';
   move_uploaded_file($filetmpname,$folder.$newfilename);

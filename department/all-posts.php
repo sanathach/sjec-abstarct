@@ -20,9 +20,6 @@
       <div class="main-panel">
         <div class="content-wrapper">
         <div class="col-lg-12 grid-margin stretch-card">
-        <?php   
-            $sql = mysqli_query($conn,"SELECT * FROM upload WHERE dept_id='$dept_id'");
-            if(mysqli_num_rows($sql)>0){ ?>
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">All Posts</h4>
@@ -42,6 +39,7 @@
                        <?php
                        $i=1;
                        include('inc/config.php');
+                        $sql = mysqli_query($conn,"SELECT * FROM upload WHERE dept_id='$dept_id'");
                         while($row = mysqli_fetch_array($sql)){
                             echo '
                             <tr>
@@ -51,7 +49,11 @@
                             <td>'.$row['description'].'</td>
                             <td>'.date("d-m-Y",strtotime($row['upload_date'])).'</td>
                             <td><a href="new-post.php?edit&&upload_id='.$row['upload_id'].'"><button class="btn btn-success" name="edit">Edit</button></a>
-                            <a href="delete-post.php?delete&&upload_id='.$row['upload_id'].'"><button class="btn btn-danger" name="delete">Delete</button></a></td>
+                            <a href="delete-post.php?delete&&upload_id='.$row['upload_id'].'"><button class="btn btn-danger" name="delete">Delete</button></a>
+                            <form id="rejectForm" method="POST">
+                              <input type="hidden" id="upload_id" value="'.$row['upload_id'].'">
+                              <button type="submit" class="btn btn-inverse-primary">Change Picture</button>
+                              </form></td>
                             </tr>
                             ';
                         }
@@ -61,9 +63,6 @@
                   </div>
                 </div>
               </div>
-              <?php } else {
-                echo '<h4 class="card-title">No Posts Uploaded</h4>';
-              } ?>
             </div>
                   <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -98,6 +97,9 @@
   <!-- Custom js for this page-->
   <script src="js/dashboard.js"></script>
   <script src="js/Chart.roundedBarCharts.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+    <script src="js/jquery.avgrund.min.js"></script>
+  <script src="js/picture.js"></script>
   <!-- End custom js for this page-->
   <!-- End custom js for this page-->
 </body>
