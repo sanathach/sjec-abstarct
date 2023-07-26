@@ -139,19 +139,32 @@ if(isset($_POST['btn_submit'])){
     $message = 'Hello, Your login credentials are 
 Email : '.$email.' 
 Password : '.$pass.'';
+<<<<<<< HEAD
   $sql = mysqli_query($conn,"INSERT into department(`dept_name`,`email`,`dept_acronym`,`password`)VALUES('$name','$email','$acronym','$password')");
+=======
+  $sql = mysqli_query($conn,"INSERT into department(`dept_name`,`email`,`password`)VALUES('$name','$email','$password')");
+>>>>>>> 9034be73b685e850dc62e3fddf7c5b570439f012
   if($sql)
   {
     $mail = new PHPMailer(true);
   $mail->isSMTP();
   $mail->Host = 'smtp.gmail.com';
   $mail->SMTPAuth = 'true';
+<<<<<<< HEAD
   $mail->Username = 'acharyasanath29@gmail.com';
   $mail->Password = 'erifwovqhrtnuami';
   $mail->SMTPSecure = 'ssl';
   $mail->Port =465;
   
   $mail->setFrom('acharyasanath29@gmail.com');
+=======
+  $mail->Username = 'nikhilb16899@gmail.com';
+  $mail->Password = 'vdphskzvgcuwtnga';
+  $mail->SMTPSecure = 'ssl';
+  $mail->Port =465;
+  
+  $mail->setFrom('nikhilb16899@gmail.com');
+>>>>>>> 9034be73b685e850dc62e3fddf7c5b570439f012
   $mail->addAddress('21ca40.sanath@sjec.ac.in');
   $mail->isHTML(true);
   $mail->Subject = 'Login Credentials';
